@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Тюмень — путеводитель</title>
+
+<style>
+:root {
+  --primary:#1f3a5f;
+  --accent:#c65a3a;
+  --light:#ffffff;
+  --bg:#f4f6f8;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Arial,sans-serif;background:var(--bg);color:#333;line-height:1.6;}
+
+header{background:var(--primary);color:white;padding:1rem;position:sticky;top:0;}
+nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+nav a{color:white;margin:0.5rem;text-decoration:none;font-weight:bold;}
+
+.hero{
+background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+url('https://upload.wikimedia.org/wikipedia/commons/6/69/Tyumen_embankment.jpg');
+background-size:cover;background-position:center;
+color:white;padding:4rem 1rem;text-align:center;
+}
+
+section{padding:2rem 1rem;max-width:1100px;margin:auto;}
+h2{color:var(--primary);margin-bottom:1rem;}
+
+.filters{margin-bottom:1rem;}
+.filters button{
+margin:0.3rem;padding:0.5rem 0.8rem;border:none;
+background:var(--primary);color:white;border-radius:4px;cursor:pointer;
+}
+.filters button.active,.filters button:hover{background:var(--accent);}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:1rem;
+}
+.card{
+background:white;border-radius:8px;overflow:hidden;
+box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+.card img{width:100%;height:160px;object-fit:cover;}
+.card div{padding:1rem;}
+.card h3{margin-bottom:0.5rem;}
+
+footer{background:var(--primary);color:white;text-align:center;padding:1rem;margin-top:2rem;}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<strong>Тюмень</strong>
+<div>
+<a href="#about">О проекте</a>
+<a href="#places">Места</a>
+<a href="#routes">Маршруты</a>
+<a href="#guests">Для гостей</a>
+</div>
+</nav>
+</header>
+
+<div class="hero">
+<h1>Тюмень: между прошлым и настоящим</h1>
+<p>Интерактивный путеводитель по городу</p>
+</div>
+
+<section id="about">
+<h2>О проекте</h2>
+<p>Сайт создан как школьный проект и знакомит пользователей с историей, архитектурой и современными общественными пространствами Тюмени.</p>
+</section>
+
+<section id="places">
+<h2>Достопримечательности</h2>
+
+<div class="filters">
+<button onclick="filterPlaces('all')" class="active">Все</button>
+<button onclick="filterPlaces('architecture')">Архитектура</button>
+<button onclick="filterPlaces('memory')">Памятники</button>
+<button onclick="filterPlaces('park')">Парки</button>
+</div>
+
+<div class="cards" id="cardContainer">
+
+<!-- ТВОИ КАРТОЧКИ БЕЗ ИЗМЕНЕНИЙ -->
+
+<div class="card" data-category="architecture">
+<img src="images/teatr.jpg">
+<div>
+<h3>Тюменский драматический театр</h3>
+<p>Старейший в Сибири (основан в 1858 г.) и крупнейший по площади драматический театр России. Расположен на площади 400-летия Тюмени в современном 5-этажном здании с колоннами. Имеет 4 сцены (Большая, Малая, «Молодость», АРТ-кафе), вмещающие >1000 зрителей</p>
+</div>
+</div>
+
+<div class="card" data-category="architecture">
+<img src="images/zdanie.jpg">
+<div>
+<h3>Комплекс зданий на улице Республики</h3>
+<p>Купеческие особняки XIX–XX веков образуют каменную летопись города.</p>
+</div>
+</div>
+
+<div class="card" data-category="park">
+<img src="images/most.jpg">
+<div>
+<h3>Набережная реки Туры</h3>
+<p>Единственная в России четырехуровневая гранитная набережная, построенная в историческом центре города. Это современная прогулочная зона длиной более 3 км с барельефами об истории Сибири, пешеходными мостами (включая «Мост Влюбленных») и подсветкой, ставшая визитной карточкой города..</p>
+</div>
+</div>
+
+<div class="card" data-category="memory">
+<img src="images/koshki.jpg">
+<div>
+<h3>Сквер сибирских кошек</h3>
+<p>Уютная аллея (открыта в 2008 г.) на ул. Первомайской, посвященная подвигу тюменских кошек, отправленных в блокадный Ленинград для борьбы с крысами. В сквере установлены 12 чугунных золоченых скульптур кошек на гранитных постаментах, отлитых по эскизам Марины Альчибаевой.</p>
+</div>
+</div>
+
+<div class="card" data-category="park">
+<img src="images/cb.jpg">
+<div>
+<h3>Цветной бульвар</h3>
+<p>Главная пешеходная зона и центр отдыха в Тюмени, открытая в 2004 году. Это 800-метровый променад, объединяющий пять площадей с аттракционами, фонтаном «Времена года», скульптурами, цирком и уютными кафе.</p>
+</div>
+</div>
+
+<div class="card" data-category="park">
+<img src="images/gilevka.jpg">
+<div>
+<h3>Гилевская роща</h3>
+<p>Популярный лесопарк в Тюмени (около 90 га) на берегу реки Войновки, благоустроенный для круглогодичного отдыха.</p>
+</div>
+</div>
+
+<div class="card" data-category="memory">
+<img src="images/mostik.jpg">
+<div>
+<h3>Мост Влюблённых</h3>
+<p>Пешеходный вантовый мост через реку Туру, ставший визитной карточкой и романтическим символом города. Он соединяет центральную часть города с заречным районом, известен эффектной ночной подсветкой и традицией молодоженов вешать «замки любви».</p>
+</div>
+</div>
+
+<div class="card" data-category="architecture">
+<img src="images/dom.jpg">
+<div>
+<h3>Дом Панкратьева</h3>
+<p>Двухэтажный каменный купеческий особняк 1907 года постройки в стиле неоренессанс. Памятник архитектуры, известный нарядным фасадом с лепниной и уникальными историческими элементами (своды Монье, стальные рольставни начала XX века)</p>
+</div>
+</div>
+
+<div class="card" data-category="architecture">
+<img src="images/voda.jpg">
+<div>
+<h3>Водонапорная башня</h3>
+<p>Водонапорная башня в Тюмени (ул. Орджоникидзе, 56/2) — это 25-метровый памятник промышленной архитектуры начала XX века (1914–1916 гг.) из красного кирпича. Восьмигранное здание в стиле «кирпичной готики» напоминает средневековый донжон. После реконструкции 2025 года в ней открыты Музей воды, молодежная резиденция и смотровая площадка. .</p>
+</div>
+</div>
+
+<div class="card" data-category="architecture">
+<img src="images/biblioteka.jpg">
+<div>
+<h3>Научная библиотека им. Д.И. Менделеева</h3>
+<p>Крупнейший региональный информационный и культурный центр, расположенный в центре города (ул. Орджоникидзе, 59). В современном 6-этажном здании (после реконструкции 2009 г.) хранится около 2,9 млн документов.</p>
+</div>
+</div>
+
+<div class="card" data-category="memory">
+<img src="images/pamatnik.jpg">
+<div>
+<h3>Памятник труженикам тыла</h3>
+<p>Бронзовая композиция, изображающая людей (женщину, подростка, инженера), которые на вытянутых руках держат строительный блок с надписью «Все для Победы!».</p>
+</div>
+</div>
+
+<div class="card" data-category="memory">
+<img src="images/vdv.jpg">
+<div>
+<h3>Сквер десантников</h3>
+<p>Тематическая зона отдыха, посвященная ВДВ. В центре — памятник-обелиск «Сила и честь», боевая машина десанта (БМД) и пушки. Оформлен в стилистике парашютов, включает места для отдыха, аллеи с деревьями и символику ВДВ.</p>
+</div>
+</div>
+
+<div class="card" data-category="memory">
+<img src="images/pamat.jpg">
+<div>
+<h3>Площадь памяти</h3>
+<p>Мемориальный комплекс в Ленинском округе, посвященный воинам ВОВ, умершим в госпиталях города, и тюменцам, погибшим на фронте. Ключевые объекты: 29-метровая стела «Свеча», Вечный огонь, братская могила, «Стена памяти» с именами более 6000 погибших и выставка военной техники.</p>
+</div>
+</div>
+
+<div class="card" data-category="park">
+<img src="images/ecopark.jpg">
+<div>
+<h3>Экопарк «Затюменский»</h3>
+<p>Популярная озелененная зона площадью более 77 га в Тюмени, сочетающая нетронутый лес (сосны, березы) с современной инфраструктурой для отдыха.</p>
+</div>
+</div>
+
+<div class="card" data-category="park">
+<img src="images/korea.jpg">
+<div>
+<h3>Парк Дружбы России и Республики Корея</h3>
+<p>Уютная тематическая зона отдыха в заречной части Тюмени (у озера Алебашево), открытая в 2020 году в честь 30-летия дипотношений.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="routes">
+<h2>Тематические маршруты</h2>
+<p><strong>🏛 Каменная Тюмень:</strong> Драмтеатр → Дом Панкратьева → Улица Республики → Башня → Библиотека → Набережная</p>
+<p><strong>🕯 Город памяти:</strong> Сквер кошек → Площадь памяти → Памятник → Сквер десантников → Мост</p>
+<p><strong>🌳 Парки:</strong> Цветной бульвар → Набережная → Экопарк → Парк дружбы → Гилевская роща</p>
+<p><strong>🏛️ Музеи:</strong> Усадьба → Колокольниковых → Городская дума → Дом Машарова
+</section>
+
+<!-- НОВЫЙ РАЗДЕЛ -->
+<section id="guests">
+<h2>Для гостей</h2>
+
+<h3>🏛 Музеи</h3>
+<div class="cards">
+<div class="card"><img src="images/museum1.jpg"><div><h3>Усадьба Колокольниковых</h3><p>ул. Республики, 18. Единственная сохранившаяся в городе классическая купеческая усадьба конца XIX — начала XX вв.  Она включает изысканный деревянный дом с резьбой и каменный торговый дом, предлагая посетителям погрузиться в атмосферу купеческого быта и истории торговли. .</p></div></div>
+<div class="card"><img src="images/museum2.jpg"><div><h3>Городская дума</h3><p>ул. Ленина, 2. Краеведческий музей в историческом здании XIX века, расположенный на Исторической площади..</p></div></div>
+<div class="card"><img src="images/museum3.jpg"><div><h3>Дом Машарова</h3><p>ул. Ленина, 24. Исторический особняк начала XX века в стиле неоклассицизма, принадлежавший промышленнику Н. Д. Машарову..</p></div></div>
+</div>
+
+<h3 style="margin-top:2rem;">🏨 Гостиницы</h3>
+<div class="cards">
+<div class="card"><img src="images/hotel1.jpg"><div><h3>Green House</h3><p>ул.Николая Федорова 9.Уникальный 4-звездочный бутик-отель, выполненный в стиле средневекового замка. Расположен в тихом районе, примерно в 10–15 минутах езды от центра города. Отель отличается именными дизайнерскими номерами, наличием термального комплекса, ресторана, собственной пекарни и летней террасы с видом на парк..</p></div></div>
+<div class="card"><img src="images/hotel2.jpg"><div><h3>DoubleTree by Hilton</h3><p>ул. Орджоникидзе, 46.Это современный четырехзвездочный отель, ориентированный как на бизнес-путешественников, так и на туристов.</p></div></div>
+<div class="card"><img src="images/hotel3.jpg"><div><h3>Mercure</h3><p>ул. 50 лет Октября, 14. Это современный международный отель французской сети Accor, интегрированный в состав многофункционального комплекса «Магеллан».</p></div></div>
+</div>
+
+<h3 style="margin-top:2rem;">🍽 Рестораны</h3>
+<div class="cards">
+<div class="card"><img src="images/rest1.jpg"><div><h3>Чум</h3><p>ул. Малыгина, 59.Заведение сочетает в себе ресторан и этнографический музей. Интерьер наполнен подлинными предметами быта северных народов (ханты, манси) и геологов-первопроходцев, привезенными из экспедиций.</p></div></div>
+<div class="card"><img src="images/rest2.jpg"><div><h3>Скадарлия</h3><p>ул. Тимофея Чаркова, 81, корп. 2. Это аутентичное заведение, названное в честь знаменитого богемного квартала в Белграде. Ресторан специализируется на традиционной балканской кухне и славится своим гостеприимством.</p></div></div>
+<div class="card"><img src="images/rest3.jpg"><div><h3>Балкан Гриль</h3><p>ул. 50 лет Октября, 3, корп. 1 Это гостеприимное заведение с по-домашнему уютной атмосферой, которое специализируется на традиционных рецептах Балканского полуострова.</p></div></div>
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Путеводитель по Тюмени</p>
+</footer>
+
+<script>
+function filterPlaces(category){
+const cards=document.querySelectorAll('.card');
+const buttons=document.querySelectorAll('.filters button');
+buttons.forEach(b=>b.classList.remove('active'));
+event.target.classList.add('active');
+
+cards.forEach(card=>{
+if(category==='all'||card.dataset.category===category){
+card.style.display='block';
+}else{
+card.style.display='none';
+}
+});
+}
+</script>
+
+</body>
+</html>
